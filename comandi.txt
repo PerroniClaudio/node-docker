@@ -1,0 +1,34 @@
+docker rm node-app -fv
+docker build -t node-app-image .
+docker run -v $(pwd):/app:ro -v /app/node_modules --name node-app --env-file ./.env -p 3000:4000 -d node-app-image
+
+docker exec -it node-app bash
+
+docker-compose up -d --build
+docker-compose down -v
+
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down 
+
+per farlo scalare: 
+
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build --scale node-app=2
+
+per mantenere i dati ma eliminare quello che non ti serve: fai partire il container e poi docker volume prune
+per rinnovarei volumes anonimi : docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build -V        
+
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v
+
+-----------------------
+
+per mongo: docker exec -it node-docker-mongo-1 mongosh --username root --password example
+
+docker crea in automatico dei network per ogni container provvisti di dns
+
+docker network ls
+docker network inspect node-docker_default
+
+per utilizzare l'ip del servizio in uno degli altri servizi basta usare il nome del servizio come hostname
+ad esempio: mongodb://mongo:27017 (mongo è il nome del servizio)
