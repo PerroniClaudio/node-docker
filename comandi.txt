@@ -32,3 +32,10 @@ docker network inspect node-docker_default
 
 per utilizzare l'ip del servizio in uno degli altri servizi basta usare il nome del servizio come hostname
 ad esempio: mongodb://mongo:27017 (mongo è il nome del servizio)
+
+-- 
+
+ATTENZIONE CLAUDIO DEL FUTURO - RICORDATI CHE SEI SU APPLE SILICON!!!!
+
+QUANDO CREI I DOCKER-COMPOSE.YML OGNI SERVIZIO DEVE AVERE UNA PROPRIETA' CHE SI CHIAMA PLATFORM E DEVI METTERE LINUX/X86_64
+ALTRIMENTI SU DEBIAN NON PARTE!!!!

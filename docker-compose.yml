@@ -1,6 +1,7 @@
 version: "3"
 services:
   nginx:
+    platform: linux/amd64
     image: nginx:bookworm
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
@@ -8,6 +9,7 @@ services:
       - node-app
   node-app:
     build: .
+    platform: linux/amd64
     image: blaudio/node-app
     environment:
       - PORT=3000
@@ -16,6 +18,7 @@ services:
       - redis
   mongo:
     image: mongo
+    platform: linux/amd64
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
@@ -23,6 +26,7 @@ services:
       - mongo-db:/data/db
   redis:
     image: redis
+    platform: linux/amd64
     ports:
       - "6379:6379"
 
