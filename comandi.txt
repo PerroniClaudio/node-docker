@@ -39,3 +39,12 @@ ATTENZIONE CLAUDIO DEL FUTURO - RICORDATI CHE SEI SU APPLE SILICON!!!!
 
 QUANDO CREI I DOCKER-COMPOSE.YML OGNI SERVIZIO DEVE AVERE UNA PROPRIETA' CHE SI CHIAMA PLATFORM E DEVI METTERE LINUX/X86_64
 ALTRIMENTI SU DEBIAN NON PARTE!!!!
+
+per caricare un'immagine su docker hub:
+
+docker tag node-app-image blaudio/node-app-image
+docker push blaudio/node-app-image
+
+o con docker-compose: 
+
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml push
